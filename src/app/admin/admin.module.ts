@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AdminLayoutComponent } from './shared/components/admin-layout/admin-layout.component';
 import { LoginPageComponent } from './login-page/login-page.component';
-import { BrowserModule } from '@angular/platform-browser';
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
 import { CreatePageComponent } from './create-page/create-page.component';
 import { EditPageComponent } from './edit-page/edit-page.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from './shared/services/auth.service';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -14,9 +16,13 @@ import { EditPageComponent } from './edit-page/edit-page.component';
     DashboardPageComponent,
     CreatePageComponent,
     EditPageComponent,
+    LoginPageComponent,
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     CommonModule,
+    SharedModule,
     RouterModule.forChild([
       {
         path: '',
@@ -32,5 +38,6 @@ import { EditPageComponent } from './edit-page/edit-page.component';
     ]),
   ],
   exports: [RouterModule],
+  providers: [AuthService],
 })
 export class AdminModule {}
