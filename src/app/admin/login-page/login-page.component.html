@@ -1,5 +1,14 @@
 <form class="card" [formGroup]="form" (ngSubmit)="submit()">
   <h2>Войти в панель администратора</h2>
+
+  <div
+    class="alert alert-danger"
+    *ngIf="authService.error$ | async as errorString"
+  >
+    {{ errorString }}
+  </div>
+
+  <div class="alert alert-info" *ngIf="message">{{ message }}</div>
   <div
     class="form-control"
     [ngClass]="{
@@ -47,7 +56,11 @@
     </div>
   </div>
 
-  <button type="submit" [disabled]="form.invalid" class="btn btn-primary">
+  <button
+    type="submit"
+    [disabled]="form.invalid || submitted"
+    class="btn btn-primary"
+  >
     Войти
   </button>
 </form>
