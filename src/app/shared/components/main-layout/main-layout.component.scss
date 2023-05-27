@@ -1,0 +1,29 @@
+.panel {
+  position: relative;
+  color: black;
+  &::after {
+    color: black;
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 0;
+    height: 1.5px;
+    background-color: black;
+    content: "";
+    transition: width 0.3s ease-out;
+  }
+
+  &:hover {
+    color: rgb(56, 56, 56);
+  }
+
+  &:hover:after,
+  &:focus:after {
+    width: 100%;
+  }
+}
+
+.navnav {
+  display: flex;
+  justify-content: space-between;
+}
