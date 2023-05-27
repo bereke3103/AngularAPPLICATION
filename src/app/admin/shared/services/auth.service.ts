@@ -4,13 +4,12 @@ import { IFireBaseAuth, IUser } from 'src/app/shared/IUser';
 import { Observable, Subject, catchError, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AuthService {
   constructor(private http: HttpClient) {}
   public error$: Subject<string> = new Subject<string>();
   get token(): string | null {
     const expDate = new Date(localStorage.getItem('fb-token-exp') as string);
-    console.log('expDate', expDate);
     if (new Date() > expDate) {
       this.logout();
       return null;

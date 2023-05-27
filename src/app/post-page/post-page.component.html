@@ -1,43 +1,20 @@
-<div class="post">
-  <div class="header">
-    <h1>Post title</h1>
-    <button routerLink="/" class="btn btn-link">На главную</button>
-  </div>
+<div *ngIf="post$ | async as post; else loading">
+  <div class="post">
+    <div class="header">
+      <h1>{{ post.title }}</h1>
+      <button routerLink="/" class="btn btn-link">На главную</button>
+    </div>
 
-  <div class="info">
-    <strong>Тут автор</strong>
-    <small>21.02.2022</small>
-    <div>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
-        inventore ratione omnis ipsam cupiditate quaerat. Ut natus reprehenderit
-        ducimus eos rerum accusantium perspiciatis officia voluptatibus optio
-        quasi, aspernatur minima ullam.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
-        inventore ratione omnis ipsam cupiditate quaerat. Ut natus reprehenderit
-        ducimus eos rerum accusantium perspiciatis officia voluptatibus optio
-        quasi, aspernatur minima ullam.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
-        inventore ratione omnis ipsam cupiditate quaerat. Ut natus reprehenderit
-        ducimus eos rerum accusantium perspiciatis officia voluptatibus optio
-        quasi, aspernatur minima ullam.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
-        inventore ratione omnis ipsam cupiditate quaerat. Ut natus reprehenderit
-        ducimus eos rerum accusantium perspiciatis officia voluptatibus optio
-        quasi, aspernatur minima ullam.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
-        inventore ratione omnis ipsam cupiditate quaerat. Ut natus reprehenderit
-        ducimus eos rerum accusantium perspiciatis officia voluptatibus optio
-        quasi, aspernatur minima ullam.
-      </p>
+    <div class="info">
+      <strong>{{ post.author }}</strong>
+      <small>{{ post.date | date : "medium" : "kz" : "kz" }}</small>
+      <div>
+        <quill-view-html [content]="post.text"></quill-view-html>
+      </div>
     </div>
   </div>
 </div>
+
+<ng-template #loading>
+  <p class="text-center">Загружаются посты...</p>
+</ng-template>
